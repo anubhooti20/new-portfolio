@@ -3,6 +3,8 @@ import { useEffect } from "react";
 
 export default function CustomCursor() {
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     const dot = document.getElementById("dot");
     const ring = document.getElementById("ring");
     if (!dot || !ring) return;

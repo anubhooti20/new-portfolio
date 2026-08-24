@@ -12,15 +12,24 @@ if db.query(models.HeroStat).count() > 0:
 
 # ── Hero Stats ───────────────────────────────────────────────────────────────
 db.add_all([
-    models.HeroStat(label="Currently building",
-                    value_text="Event-driven microservices\nat CreateBytes",
-                    order=1),
-    models.HeroStat(label="Cameras in production",
-                    value_big="100+",
-                    order=2),
-    models.HeroStat(label="Payment consistency",
-                    value_text="99.9% across Stripe\n& Razorpay integrations",
-                    order=3),
+    models.HeroStat(
+        label="Years of experience",
+        value_big="1.5+",
+        value_text="Django and FastAPI in production",
+        order=1,
+    ),
+    models.HeroStat(
+        label="Cameras in production",
+        value_big="100+",
+        value_text="Yugyog.ai CCTV analytics",
+        order=2,
+    ),
+    models.HeroStat(
+        label="Currently building",
+        value_big="RAG",
+        value_text="Enterprise AI Assistant",
+        order=3,
+    ),
 ])
 
 # ── About Paragraphs ─────────────────────────────────────────────────────────

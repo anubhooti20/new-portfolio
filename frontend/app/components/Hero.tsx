@@ -62,15 +62,17 @@ export default function Hero({ stats }: { stats: HeroStatOut[] }) {
               <div className="glance-label">At a glance</div>
               <div className="glance-rows">
                 {stats.map((stat) => {
-                  const big = stat.value_big ?? "";
-                  const hasPlus = big.endsWith("+");
-                  const num = hasPlus ? big.slice(0, -1) : big;
-                  const isLong = big.length > 3;
+                  const big = (stat.value_big ?? "").trim();
+                  const text = (stat.value_text ?? "").split("\n")[0].trim();
+                  const display = big || text;
+                  const hasPlus = display.endsWith("+");
+                  const num = hasPlus ? display.slice(0, -1) : display;
+                  const isLong = display.length > 4;
                   return (
                     <div key={stat.id} className="glance-row">
                       <span
-                        className="gr-n"
-                        style={isLong ? { fontSize: "1.8rem" } : undefined}
+                        className={`gr-n${big ? "" : " is-text"}`}
+                        style={isLong ? { fontSize: "1.35rem" } : undefined}
                       >
                         {num}
                         {hasPlus && <em>+</em>}

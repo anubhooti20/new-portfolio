@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ProjectOut } from "@/lib/api";
 import SectionWrapper from "./ui/SectionWrapper";
 import RevealWrapper from "./ui/RevealWrapper";
@@ -207,18 +207,38 @@ function ProjectCard({ project, index }: { project: ProjectOut; index: number })
 export default function Projects({ items }: { items: ProjectOut[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const scrollByCard = (dir: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.querySelector(".proj-card") as HTMLElement | null;
+    const amount = (card?.offsetWidth ?? 360) + 24;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
   const onMouseDown = (e: React.MouseEvent) => {
     const el = scrollRef.current;
     if (!el) return;
+    if ((e.target as HTMLElement).closest("a,button")) return;
     let isDown = true;
-    const startX = e.pageX - el.offsetLeft;
+    const startX = e.pageX;
     const sLeft = el.scrollLeft;
 
     const onMove = (ev: MouseEvent) => {
       if (!isDown) return;
       ev.preventDefault();
-      const x = ev.pageX - el.offsetLeft;
-      el.scrollLeft = sLeft - (x - startX) * 1.4;
+      el.scrollLeft = sLeft - (ev.pageX - startX);
     };
     const onUp = () => {
       isDown = false;
@@ -236,7 +256,7 @@ export default function Projects({ items }: { items: ProjectOut[] }) {
       sectionNum="04 / Work"
       id="work"
       className="bg-[var(--surface)]"
-      bodyClassName="pr-0"
+      bodyClassName="pr-0 projects-body"
     >
       <RevealWrapper className="pr-12">
         <div className="sh">
@@ -245,19 +265,17 @@ export default function Projects({ items }: { items: ProjectOut[] }) {
           <em>work</em> →
         </div>
       </RevealWrapper>
-      <p
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: ".65rem",
-          letterSpacing: ".1em",
-          color: "var(--chalk3)",
-          textTransform: "uppercase",
-          marginBottom: "2rem",
-          paddingRight: "3rem",
-        }}
-      >
-        Drag to scroll horizontally
-      </p>
+      <div className="projects-toolbar">
+        <p className="projects-hint">Scroll or use arrows · swipe on mobile</p>
+        <div className="projects-nav">
+          <button type="button" aria-label="Previous project" onClick={() => scrollByCard(-1)}>
+            ←
+          </button>
+          <button type="button" aria-label="Next project" onClick={() => scrollByCard(1)}>
+            →
+          </button>
+        </div>
+      </div>
       <div className="projects-scroll-wrap">
         <div
           className="projects-scroll"
