@@ -87,11 +87,12 @@ db.add_all([
 # ── Skills ────────────────────────────────────────────────────────────────────
 skill_data = {
     "Languages & Core CS":      ["Python", "Java", "SQL", "DSA", "OOP"],
-    "Frameworks & APIs":        ["Django", "DRF", "FastAPI", "REST API design", "JWT Auth"],
-    "Async & Messaging":        ["Celery", "Redis", "RabbitMQ", "WebSockets", "GCP Pub/Sub", "Background Jobs"],
-    "Databases & Optimization": ["PostgreSQL", "MySQL", "Query Optimization", "ORM Tuning"],
-    "Cloud & Infra":            ["AWS (SNS/SES/S3)", "GCP", "Azure", "Docker", "CI/CD", "Linux", "Git"],
-    "Testing & Integrations":   ["Pytest", "Stripe", "Razorpay", "Twilio", "spaCy", "Pandas", "Scikit-learn"],
+    "Frameworks & APIs":        ["Django", "DRF", "FastAPI", "Pydantic", "REST API design", "JWT Auth"],
+    "AI & LLM":                 ["RAG", "Qdrant", "Anthropic Claude", "OpenAI", "Portkey", "spaCy"],
+    "Async & Messaging":        ["Celery", "Redis", "RabbitMQ", "WebSockets", "Redis Pub/Sub", "GCP Pub/Sub"],
+    "Databases & Optimization": ["PostgreSQL", "Aurora", "MySQL", "MongoDB", "Neo4j", "Query Optimization"],
+    "Cloud & Infra":            ["AWS (Lambda/ECS/S3)", "GCP", "Docker", "CI/CD", "GitHub Actions", "Linux", "OpenTelemetry"],
+    "Testing & Integrations":   ["Pytest", "Microsoft Graph", "SharePoint", "Databricks", "ServiceNow", "Stripe", "Razorpay", "Twilio"],
 }
 order = 1
 for category, names in skill_data.items():
@@ -101,27 +102,27 @@ for category, names in skill_data.items():
 
 # ── Skill Visuals ─────────────────────────────────────────────────────────────
 skv = [
-    ("Py", "Python",           "Language"),
-    ("Dj", "Django",           "Framework"),
-    ("◉",  "DRF",              "API"),
-    ("⚡", "Celery",           "Async"),
-    ("R",  "Redis",            "Cache & Broker"),
-    ("MQ", "RabbitMQ",         "Messaging"),
-    ("PG", "PostgreSQL",       "Database"),
-    ("Dk", "Docker",           "Container"),
-    ("☁",  "AWS / GCP",        "Cloud"),
-    ("⚙",  "CI/CD",            "DevOps"),
-    ("$",  "Stripe / Razorpay","Payments"),
-    ("✓",  "Pytest",           "Testing"),
+    ("Py", "Python",            "Language"),
+    ("Dj", "Django",            "Framework"),
+    ("◉",  "FastAPI",           "API"),
+    ("AI", "Claude / OpenAI",   "LLM"),
+    ("Qd", "Qdrant",            "Vector DB"),
+    ("⌘",  "RAG",               "Retrieval"),
+    ("⚡", "Celery",            "Async"),
+    ("R",  "Redis",             "Cache & Broker"),
+    ("PG", "PostgreSQL",        "Database"),
+    ("☁",  "AWS / GCP",         "Cloud"),
+    ("Dk", "Docker",            "Container"),
+    ("⚙",  "CI/CD",             "DevOps"),
 ]
 for i, (icon, name, label) in enumerate(skv, 1):
     db.add(models.SkillVisual(icon=icon, name=name, label=label, order=i))
 
 # ── Marquee ───────────────────────────────────────────────────────────────────
 marquee_items = [
-    "Python", "Django", "DRF", "FastAPI", "Celery", "Redis", "RabbitMQ",
-    "PostgreSQL", "MySQL", "Docker", "AWS", "GCP", "WebSockets", "Stripe",
-    "Razorpay", "Open to remote",
+    "Python", "Django", "DRF", "FastAPI", "RAG", "Qdrant", "Claude", "OpenAI",
+    "Celery", "Redis", "RabbitMQ", "PostgreSQL", "Docker", "AWS", "GCP",
+    "WebSockets", "Stripe", "Razorpay", "Open to remote",
 ]
 for i, text in enumerate(marquee_items, 1):
     db.add(models.MarqueeItem(text=text, order=i))
@@ -142,6 +143,19 @@ db.add_all([
         tags=["Django", "DRF", "PostgreSQL", "Celery", "Redis", "RabbitMQ", "WebSockets", "GCP", "Stripe"],
         order=1),
     models.Project(
+        name="Enterprise AI Assistant",
+        badge="Agentic RAG",
+        description="Conversational access to organizational knowledge across SharePoint, OneDrive, Databricks, Neo4j, and ServiceNow — built as an agentic RAG platform.",
+        features=[
+            "Backend services for an enterprise assistant over <strong>SharePoint, OneDrive, Microsoft Graph, Databricks, Neo4j, and ServiceNow</strong> through an agentic RAG architecture.",
+            "Project-based workspaces with <strong>RBAC</strong>, custom AI instructions, and source/catalogue scoping, with access checks via Microsoft Graph.",
+            "Multimodal knowledge-base pipeline ingesting PDFs, presentations, spreadsheets, and audio/video via <strong>vision understanding and transcription</strong>.",
+            "Hybrid dense and sparse retrieval on <strong>Qdrant</strong> with recursive chunking and LLM-based chunk quality scoring.",
+            "Agent orchestration over <strong>Anthropic Claude and OpenAI</strong> via Portkey — tool calling, sandboxed code execution, streaming over Redis Pub/Sub — deployed on <strong>AWS Lambda, Batch, Aurora, and S3</strong>.",
+        ],
+        tags=["FastAPI", "Qdrant", "Claude", "OpenAI", "RAG", "AWS", "Redis", "Neo4j"],
+        order=2),
+    models.Project(
         name="Spolto",
         badge="Sports & Coaching",
         description="Sports coaching, subscriptions and CMS workflows — built for high-volume secure auth and payments.",
@@ -151,7 +165,7 @@ db.add_all([
             "<strong>Razorpay integration</strong> with idempotent webhook verification — <strong>99.9% payment consistency</strong> across subscription workflows.",
         ],
         tags=["Django", "DRF", "PostgreSQL", "Redis", "Razorpay", "AWS", "Twilio", "Docker"],
-        order=2),
+        order=3),
     models.Project(
         name="Loan Prediction Model",
         badge="Data Science",
@@ -161,7 +175,7 @@ db.add_all([
             "Trained and evaluated classification models — improved baseline prediction accuracy with cross-validation and tuning.",
         ],
         tags=["Python", "Pandas", "Scikit-learn", "SQL", "EDA"],
-        order=3),
+        order=4),
 ])
 
 db.commit()

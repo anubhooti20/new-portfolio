@@ -81,7 +81,7 @@ export default function Hero({ stats }: { stats: HeroStatOut[] }) {
                 })}
               </div>
               <div className="glance-tags">
-                {["Python", "Django", "Celery", "PostgreSQL", "Docker"].map((t) => (
+                {["Python", "FastAPI", "RAG", "Qdrant", "AWS"].map((t) => (
                   <span key={t} className="glance-tag">
                     {t}
                   </span>

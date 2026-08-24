@@ -5,6 +5,44 @@ import SectionWrapper from "./ui/SectionWrapper";
 import RevealWrapper from "./ui/RevealWrapper";
 
 const PROJECT_SVGS: Record<string, React.ReactNode> = {
+  "Enterprise AI Assistant": (
+    <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid slice">
+      <rect width="460" height="220" fill="#0d0e0b"/>
+      <rect x="20" y="18" width="200" height="184" rx="6" fill="#111110" stroke="#222220"/>
+      <rect x="32" y="30" width="70" height="6" rx="2" fill="#d4f53c" opacity=".85"/>
+      <rect x="32" y="42" width="110" height="3" rx="1" fill="#4a4a46" opacity=".45"/>
+      <rect x="32" y="62" width="168" height="28" rx="4" fill="#0a0c08"/>
+      <circle cx="46" cy="76" r="5" fill="#d4f53c" opacity=".9"/>
+      <rect x="58" y="70" width="120" height="3" rx="1" fill="#e8d5a3" opacity=".7"/>
+      <rect x="58" y="78" width="90" height="2" rx="1" fill="#4a4a46" opacity=".4"/>
+      <rect x="56" y="100" width="120" height="22" rx="10" fill="#181816" stroke="#d4f53c" strokeOpacity=".35"/>
+      <rect x="68" y="108" width="80" height="6" rx="2" fill="#d4f53c" opacity=".75"/>
+      <rect x="32" y="132" width="168" height="22" rx="4" fill="#0a0c08"/>
+      <rect x="40" y="140" width="50" height="6" rx="2" fill="#7c93ff" opacity=".7"/>
+      <rect x="96" y="141" width="90" height="4" rx="1" fill="#4a4a46" opacity=".4"/>
+      <rect x="32" y="160" width="168" height="22" rx="4" fill="#0a0c08"/>
+      <rect x="40" y="168" width="40" height="6" rx="2" fill="#4ade80" opacity=".7"/>
+      <rect x="86" y="169" width="100" height="4" rx="1" fill="#4a4a46" opacity=".4"/>
+      <rect x="240" y="18" width="200" height="184" rx="6" fill="#111110" stroke="#222220"/>
+      <rect x="252" y="30" width="80" height="6" rx="2" fill="#d4f53c" opacity=".8"/>
+      <circle cx="280" cy="78" r="22" fill="#d4f53c" opacity=".12" stroke="#d4f53c" strokeOpacity=".5"/>
+      <circle cx="340" cy="70" r="16" fill="#7c93ff" opacity=".12" stroke="#7c93ff" strokeOpacity=".5"/>
+      <circle cx="320" cy="118" r="20" fill="#4ade80" opacity=".12" stroke="#4ade80" strokeOpacity=".5"/>
+      <circle cx="380" cy="108" r="14" fill="#f59e0b" opacity=".12" stroke="#f59e0b" strokeOpacity=".5"/>
+      <line x1="298" y1="86" x2="326" y2="108" stroke="#4a4a46" strokeWidth="1"/>
+      <line x1="300" y1="74" x2="326" y2="72" stroke="#4a4a46" strokeWidth="1"/>
+      <line x1="338" y1="86" x2="332" y2="102" stroke="#4a4a46" strokeWidth="1"/>
+      <line x1="336" y1="122" x2="368" y2="112" stroke="#4a4a46" strokeWidth="1"/>
+      <rect x="252" y="154" width="176" height="8" rx="2" fill="#181816"/>
+      <rect x="252" y="154" width="110" height="8" rx="2" fill="#d4f53c" opacity=".7">
+        <animate attributeName="width" values="40;160;110" dur="3.2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="252" y="172" width="176" height="8" rx="2" fill="#181816"/>
+      <rect x="252" y="172" width="70" height="8" rx="2" fill="#7c93ff" opacity=".65">
+        <animate attributeName="width" values="90;50;70" dur="2.6s" repeatCount="indefinite"/>
+      </rect>
+    </svg>
+  ),
   "Yugyog.ai": (
     <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid slice">
       <rect width="460" height="220" fill="#0d0e0b"/>
